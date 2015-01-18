@@ -514,9 +514,10 @@ void loop()
 
     // Serial print and/or display at 0.5 s rate independent of data rates
     delt_t = millis() - count;
-    if (delt_t > 500) { // update LCD once per half-second independent of read rate
+    if (delt_t > 100) { // update LCD once per half-second independent of read rate
 
     if(SerialDebug) {
+    /*
     Serial.print("ax = "); Serial.print((int)1000*ax);  
     Serial.print(" ay = "); Serial.print((int)1000*ay); 
     Serial.print(" az = "); Serial.print((int)1000*az); Serial.println(" mg");
@@ -531,6 +532,20 @@ void loop()
     Serial.print(" qx = "); Serial.print(q[1]); 
     Serial.print(" qy = "); Serial.print(q[2]); 
     Serial.print(" qz = "); Serial.println(q[3]); 
+    */
+    Serial.print((int)1000*ax); Serial.print(",");
+    Serial.print((int)1000*ay); Serial.print(",");
+    Serial.print((int)1000*az); Serial.print(",");
+    Serial.print(gx, 2); Serial.print(",");
+    Serial.print(gy, 2); Serial.print(",");
+    Serial.print(gz, 2); Serial.print(",");
+    Serial.print((int)mx); Serial.print(",");
+    Serial.print((int)my); Serial.print(",");
+    Serial.print((int)mz); Serial.print(",");
+    Serial.print(q[0]); Serial.print(",");
+    Serial.print(q[1]); Serial.print(",");
+    Serial.print(q[2]); Serial.print(",");
+    Serial.print(q[3]); Serial.println("");
     }               
     tempCount = readTempData();  // Read the gyro adc values
     temperature = ((float) tempCount) / 333.87 + 21.0; // Gyro chip temperature in degrees Centigrade
